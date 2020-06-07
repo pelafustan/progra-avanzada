@@ -29,7 +29,7 @@
 * El auto se moverá en linea recta y existirá un método que permita esto. La acción de mover el auto será a través de una tecla y, cada vez que se presione, llamará a éste método de la clase auto.
 * Para determinar el consumo de combustible, se aplicará la fórmula <img src="https://latex.codecogs.com/svg.latex?\large&space;d=v\cdot&space;t" title="\large d=v\cdot t" />, donde:
     * <img src="https://latex.codecogs.com/svg.latex?\large&space;d" title="\large d" /> es la distancia recorrida.
-    * <img src="https://latex.codecogs.com/svg.latex?\large&space;v" title="\large v" /> es la velocidad del móvil.
+    * <img src="https://latex.codecogs.com/svg.latex?\large&space;v\," title="\large v\," /> es la velocidad del móvil.
     * <img src="https://latex.codecogs.com/svg.latex?\large&space;t" title="\large t" /> es el tiempo que dura el movimiento (`random` entre 1 y 10 segundos).
 * El control de velocidad queda a libre disposición de implementar y NO se complique con la aceleración.
 * Las ruedas sufren desgaste por cada avance del vehículo; éstas se deterioran entre un 1% y 10% por cada movimiento del auto.
