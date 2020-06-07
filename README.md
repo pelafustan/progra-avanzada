@@ -8,11 +8,13 @@ These instructions will get you a copy of this repository for running in your lo
 
 ### Prerequisites
 
-I encourage you to use the latest version available of [Python](https://www.python.org/downloads/), but any `python --version >=3.6` should work. The current version is `3.8.2`.
+I encourage you to use the latest available version of [Python](https://www.python.org/downloads/), but any `python --version >=3.6` should work. The current version is `3.8.2`.
 
 The scripts was written on GNU/Linux, so I suggest you to run on a distro of your choice.
 
 So far no other packages/modules are needed. If this last changes, I'll let you know.
+
+EDIT FOR `project-1`: the project uses `pandas` library, so you need to install it. On ArchLinux, use `sudo pacman -S python-pandas`. For Debian-based distros, `sudo apt-get install python3-pandas`.
 
 ### Installing
 
@@ -21,14 +23,14 @@ Clone the repository
 git clone https://github.com/pelafustan/progra-avanzada.git
 ```
 
-Each folder contain a different assignment or project. To run it, only browse the folder and run the main script, e.g.
+Each folder contains a different assignment or project. To run it, only browse the folder and run the main script, e.g.
 ```
 cd laboratorio_1
 python Main.py
 ```
 If you're using Ubuntu/Debian, maybe you should use `python3` instead `python`.
 
-In the project folder, also you can find a plain text file with the details of the assignment or project (in spanish).
+In the every subfolder, also you can find a README file with the details of the assignment or project (in spanish).
 
 ## Author
 * **[Patricio Parada](https://github.com/pelafustan)**
