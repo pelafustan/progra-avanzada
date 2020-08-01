@@ -14,7 +14,8 @@ The scripts was written on GNU/Linux, so I suggest you to run on a distro of you
 
 So far no other packages/modules are needed. If this last changes, I'll let you know.
 
-EDIT FOR `project-1`: the project uses `pandas` library, so you need to install it. On ArchLinux, use `sudo pacman -S python-pandas`. For Debian-based distros, `sudo apt-get install python3-pandas`.
+EDIT FOR `proyecto_1`: the project uses `pandas` library, so you need to install it. On ArchLinux, use `sudo pacman -S python-pandas`. For Debian-based distros, `sudo apt-get install python3-pandas`.
+EDIT FOR `proyecto_2`: the projects uses `biopandas` library, so we should install it. Please, follow the [installation instruction](http://rasbt.github.io/biopandas/installation/) for more details.
 
 ### Installing
 
