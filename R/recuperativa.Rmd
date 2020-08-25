@@ -1,0 +1,138 @@
+---
+title: "Recuperativa Unidad II"
+author: "J. Patricio Parada G."
+date: "25/08/2020"
+lang: "es"
+output:
+    pdf_document:
+        toc: true
+        toc_depth: 2
+        number_sections: true
+        latex_engine: pdflatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Paro cardíaco
+
+Comúnmente llamado ataque cardíaco, el paro cardíaco es una condición riegosa y virtualmente mortífera que pone fin a millones de vidas al año. Es una de las causas de muerte más frecuentes en humanos y se debe a variados factores; puede ser a consecuencia del estilo de vida llevado o debido a otras afecciones o enfermedades.
+
+El conjunto de datos anexo presenta 12 factores que eventualmente proporcionan información respecto a si un paciente es candidato a sufrir un ataque cardíaco.
+
+# El Dataset
+
+El conjunto de datos adjunto correponde a
+
+```{r}
+data <- read.csv("CRP_dataset.csv")
+```
+
+## Columnas
+
+Las columnas (variables) que conforman el conjunto de datos corresponden a
+
+```{r}
+colnames(data)
+```
+
+donde:
+```{=latex}
+\begin{itemize}
+    \item \texttt{Age}: edad
+    \item \texttt{Gender}: sexo del paciente. 1 para masculino, 2 para femenino.
+    \item \texttt{Chain\_smoker}: fumador. 0 no fumador, 1 fumador.
+    \item \texttt{Consumes\_other\_tobacco\_products}: consumidor de otros productos derivados del tabaco. 0 no consumidor, 1 consumidor.
+    \item \texttt{HighBP}: hipertensión. 0 no hipertenso, 1 hipertenso.
+    \item \texttt{Obese}: obesidad. 0 sin obesidad, 1 obeso.
+    \item \texttt{Diabetes}: diabetes, 0 sin diabetes, 1 con diabetes.
+    \item \texttt{Metabolic\_syndrome}: síndrome metabólico. 0 no tiene, 1 paciente con síndrome.
+    \item \texttt{Use\_of\_stimulant\_drugs}: uso de drogas estimulantes. 0 no consumidor, 1 consumidor.
+    \item \texttt{Family\_history}: historial familiar de paro cardíaco. 0 no tiene historial, 1 tiene historial.
+    \item \texttt{History\_of\_preeclampsia}: historial de preeclampsia. 0 sin historial, 1 con historial.
+    \item \texttt{CABG\_history}: historial de cirugía de bypass de arteria coronaria. 0 sin historial, 1 con historial.
+    \item \texttt{Respiratory\_illness}: enfermedad respiratoria. 0 sin enferemedades respiratorias, 1 posee enfermedades respiratorias.
+    \item \texttt{UnderRisk}: paciente bajo riesgo. \texttt{yes}: sí, \texttt{no}: no.
+\end{itemize}
+```
+## Estructura del dataset
+
+La estructura del conjunto corresponde a
+
+```{r}
+str(data)
+```
+
+de donde se puede observar que son 14 parámetros y 889 observaciones.
+```{=latex}
+\newpage
+```
+## Tipo de datos
+
+De acuerdo a lo observado en el conjunto de datos y lo descrito a partir de sus columnas, la totalidad de las variables serán consideradas como cualitativas. Del mismo modo, se procede a filtrar los datos para saltar las incoherencias:
+
+```{r}
+data$Gender[!(data$Gender == 1 | data$Gender == 2)] <- NA
+data$Chain_smoker[!(data$Chain_smoker == 0 | data$Chain_smoker == 1)] <- NA
+data$Consumes_other_tobacco_products[
+    !(data$Consumes_other_tobacco_products == 0
+    | data$Consumes_other_tobacco_products == 1)] <- NA
+data$HighBP[!(data$HighBP == 0 | data$HighBP == 1)] <- NA
+data$Obese[!(data$Obese == 0 | data$Obese == 1)] <- NA
+data$Diabetes[!(data$Diabetes == 0 | data$Diabetes == 1)] <- NA
+data$Metabolic_syndrome[
+    !(data$Metabolic_syndrome == 0
+    | data$Metabolic_syndrome == 1)] <- NA
+data$Use_of_stimulant_drugs[
+    !(data$Use_of_stimulant_drugs == 0
+    | data$Use_of_stimulant_drugs == 1)] <- NA
+data$Family_history[
+    !(data$Family_history == 0 | data$Family_history == 1)] <- NA
+data$History_of_preeclampsia[
+    !(data$History_of_preeclampsia == 0
+    | data$History_of_preeclampsia == 1)] <- NA
+data$CABG_history[!(data$CABG_history == 0 | data$CABG_history == 1)] <- NA
+data$Respiratory_illness[
+    !(data$Respiratory_illness == 0 | data$Respiratory_illness == 1)] <- NA
+```
+
+Para facilitar la legibilidad de los datos, se cambia el tipo de los parámetros a booleano.
+
+```{r}
+data$Age <- as.factor(data$Age)
+data$Gender <- as.factor(data$Gender)
+data$Chain_smoker <- as.logical(data$Chain_smoker)
+data$Consumes_other_tobacco_products <- as.logical(data$Consumes_other_tobacco_products)
+data$HighBP <- as.logical(data$HighBP)
+data$Obese <- as.logical(data$Obese)
+data$Diabetes <- as.logical(data$Diabetes)
+data$Metabolic_syndrome <- as.logical(data$Metabolic_syndrome)
+data$Use_of_stimulant_drugs <- as.logical(data$Use_of_stimulant_drugs)
+data$Family_history <- as.logical(data$Family_history)
+data$History_of_preeclampsia <- as.logical(data$History_of_preeclampsia)
+data$CABG_history <- as.logical(data$CABG_history)
+data$Respiratory_illness <- as.logical(data$Respiratory_illness)
+```
+
+Para el caso particular de los valores de la columna $\verb|UnderRisk|$, se hará uso del paquete `batman`.
+```{r}
+if(!("batman" %in% rownames(installed.packages()))){
+    install.packages("batman")
+}
+library("batman")
+```
+
+Entonces, el filtrado de los datos de $\verb|UnderRisk|$ se realiza mediante
+```{r}
+data$UnderRisk <- to_logical(data$UnderRisk)
+```
+```{=latex}
+\newpage
+```
+## Resumen estadístico
+
+El resumen estadístico después del filtrado corresponde a
+```{r}
+summary(data)
+```
