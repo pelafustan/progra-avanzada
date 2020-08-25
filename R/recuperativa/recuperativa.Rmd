@@ -38,6 +38,7 @@ colnames(data)
 ```
 
 donde:
+
 ```{=latex}
 \begin{itemize}
     \item \texttt{Age}: edad
@@ -65,6 +66,7 @@ str(data)
 ```
 
 de donde se puede observar que son 14 parámetros y 889 observaciones.
+
 ```{=latex}
 \newpage
 ```
@@ -100,7 +102,6 @@ data$Respiratory_illness[
 Para facilitar la legibilidad de los datos, se cambia el tipo de los parámetros a booleano.
 
 ```{r}
-data$Age <- as.factor(data$Age)
 data$Gender <- as.factor(data$Gender)
 data$Chain_smoker <- as.logical(data$Chain_smoker)
 data$Consumes_other_tobacco_products <- as.logical(data$Consumes_other_tobacco_products)
@@ -116,6 +117,7 @@ data$Respiratory_illness <- as.logical(data$Respiratory_illness)
 ```
 
 Para el caso particular de los valores de la columna $\verb|UnderRisk|$, se hará uso del paquete `batman`.
+
 ```{r}
 if(!("batman" %in% rownames(installed.packages()))){
     install.packages("batman")
@@ -124,8 +126,10 @@ library("batman")
 ```
 
 Entonces, el filtrado de los datos de $\verb|UnderRisk|$ se realiza mediante
+
 ```{r}
 data$UnderRisk <- to_logical(data$UnderRisk)
+
 ```
 ```{=latex}
 \newpage
@@ -133,6 +137,231 @@ data$UnderRisk <- to_logical(data$UnderRisk)
 ## Resumen estadístico
 
 El resumen estadístico después del filtrado corresponde a
+
 ```{r}
 summary(data)
 ```
+
+### Edades
+
+A continuación se presenta un diagrama de caja para los datos de la columna edad:
+
+```{r}
+boxplot(
+    data$Age,
+    main = "Edades",
+    ylab = "Age"
+)
+```
+Si se presentan los datos de manera ordenada
+
+```{r}
+sort(data$Age, decreasing = FALSE)
+```
+
+Se puede ver que el único valor que carece de sentido es `999`, por lo que se procederá a transformar ese valor a `NA`:
+
+```{r}
+data$Age[data$Age == 999] <- NA
+```
+
+Se vuelve a presentar el boxplot
+
+```{r}
+boxplot(
+    data$Age,
+    main = "Edades",
+    ylab = "Age"
+)
+```
+
+Junto con los datos ordenados
+```{r}
+sort(data$Age, decreasing = FALSE)
+```
+
+de donde se puede observar que ya no existen valores incoherentes.
+
+Nuevamente se presenta un resumen de los datos:
+```{r}
+summary(data)
+```
+
+## Visualización
+
+A continuación se presentan los histogramas de las distintas variables:
+
+```{r}
+hist(
+    data$Age,
+    main = "Edad",
+    xlab = "Edad",
+    ylab = "Frecuencia"
+)
+```
+
+Para la variable `Age` se observa que la frecuencia es más o menos homogénea, observándose un peak cercano a 40 años.
+
+```{r}
+# Reemplazo para etiquetas en barplot
+arg1 <- c("No", "Sí")
+arg2 <- c("No presenta", "Presenta")
+arg3 <- c("Masculino", "Femenino")
+```
+
+Lo anterior corresponde a vectores que serán pasados al momento de formatear los histogramas siguientes.
+
+```{r}
+barplot(
+    table(data$Gender),
+    names.arg = arg3,
+    main = "Género",
+    xlab = "Género",
+    ylab = "Frecuencia",
+)
+```
+
+El histograma muestra el género de los pacientes, en donde se ve que en su mayoría los pacientes son hombres.
+
+```{r}
+barplot(
+    table(data$Chain_smoker),
+    names.arg = arg1,
+    main = "Consumo de tabaco",
+    xlab = "Fumador/a",
+    ylab = "Frecuencia"
+    )
+```
+
+En cuanto a lo que respecta a que si son fumadores, la gran mayoría de los pacientes no son fumadores.
+
+```{r}
+barplot(
+    table(data$Consumes_other_tobacco_products),
+    names.arg = arg1,
+    main = "Consumo de otros productos derivados del tabaco",
+    xlab = "Consumidor",
+    ylab = "Frecuencia"
+)
+```
+
+En cuanto al consumo de otros productos derivados del tabaco, la situación cambia a que la mayoría de los pacientes consumen dichos productos.
+
+```{r}
+barplot(
+    table(data$HighBP),
+    names.arg = arg2,
+    main = "Presión sanguínea",
+    xlab = "Presión alta",
+    ylab = "Frecuencia"
+)
+```
+
+Los pacientes observados en su mayorían presentan niveles de presión sanguínea normales.
+
+```{r}
+barplot(
+    table(data$Obese),
+    names.arg = arg2,
+    main = "Obesidad",
+    xlab = "Obeso/a",
+    ylab = "Frecuencia"
+)
+```
+
+Respecto a los niveles de obesidad, el grueso de los pacientes posee esta condición.
+
+```{r}
+barplot(
+    table(data$Diabetes),
+    names.arg = arg1,
+    main = "Diabetes",
+    xlab = "Diabético/a",
+    ylab = "Frecuencia"
+)
+```
+
+Respecto a la presencia de diabetes, un minoría presenta esta condición.
+
+```{r}
+barplot(
+    table(data$Metabolic_syndrome),
+    names.arg = arg2,
+    main = "Síndrome Metabólico",
+    xlab = "Historial",
+    ylab = "Frecuencia"
+)
+```
+
+Nuevamente, sólo una minoría de los pacientes presenta síndrome metabólico.
+
+```{r}
+barplot(
+    table(data$Use_of_stimulant_drugs),
+    names.arg = arg2,
+    main = "Consumo de drogas estimulantes",
+    xlab = "Consumidor/a",
+    ylab = "Frecuencia"
+)
+```
+
+Respecto al consumo de drogas estimulantes, sólo un pequeño número de éstos presentan consumo de dichas sustancias.
+
+```{r}
+barplot(
+    table(data$Family_history),
+    names.arg = arg2,
+    main = "Historial Familiar de ataque cardíaco",
+    xlab = "Historial",
+    ylab = "Frecuencia"
+)
+```
+
+Dentro de las observaciones, la mayoría presenta historial de ataque cardíaco entre su ascendencia.
+
+```{r}
+barplot(
+    table(data$History_of_preeclampsia),
+    names.arg = arg2,
+    main = "Historial de Preeclampsia",
+    xlab = "Historial",
+    ylab = "Frecuencia"
+)
+```
+
+En lo que respecta al historial de preeclampsia, la mayoría no presenta esta condición.
+
+```{r}
+barplot(
+    table(data$CABG_history),
+    names.arg = arg2,
+    main = "Historial de cirugía de bypass de la arteria coronaria",
+    xlab = "Historial",
+    ylab = "Frecuencia"
+)
+```
+
+De igual manera, los pacientes observados no presentan cirugías de bypass de la arteria coronaria anteriores.
+
+```{r}
+barplot(
+    table(data$Respiratory_illness),
+    names.arg = arg2,
+    main = "Enefermedades Respiratorias",
+    xlab = "Presenta",
+    ylab = "Frecuencia"
+)
+```
+
+Así mismo, el número de pacientes con enfermedades respiratorias es mínimo.
+```{r}
+barplot(
+    table(data$UnderRisk),
+    names.arg = arg1,
+    main = "Presencia de Riesgo",
+    xlab = "Riesgoso/a",
+    ylab = "Frecuencia"
+)
+```
+
+De lo anterior, se observa que el número de pacientes bajo riesgo de ataque cardíaco es bajo.

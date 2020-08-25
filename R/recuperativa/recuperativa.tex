@@ -1,0 +1,791 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  spanish,
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Recuperativa Unidad II},
+  pdfauthor={J. Patricio Parada G.},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\else
+  \usepackage[shorthands=off,main=spanish]{babel}
+\fi
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Recuperativa Unidad II}
+\author{J. Patricio Parada G.}
+\date{25/08/2020}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{paro-carduxedaco}{%
+\section{Paro cardíaco}\label{paro-carduxedaco}}
+
+Comúnmente llamado ataque cardíaco, el paro cardíaco es una condición
+riegosa y virtualmente mortífera que pone fin a millones de vidas al
+año. Es una de las causas de muerte más frecuentes en humanos y se debe
+a variados factores; puede ser a consecuencia del estilo de vida llevado
+o debido a otras afecciones o enfermedades.
+
+El conjunto de datos anexo presenta 12 factores que eventualmente
+proporcionan información respecto a si un paciente es candidato a sufrir
+un ataque cardíaco.
+
+\hypertarget{el-dataset}{%
+\section{El Dataset}\label{el-dataset}}
+
+El conjunto de datos adjunto correponde a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data \textless{}{-}}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"CRP\_dataset.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{columnas}{%
+\subsection{Columnas}\label{columnas}}
+
+Las columnas (variables) que conforman el conjunto de datos corresponden
+a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Age"                             "Gender"                         
+##  [3] "Chain_smoker"                    "Consumes_other_tobacco_products"
+##  [5] "HighBP"                          "Obese"                          
+##  [7] "Diabetes"                        "Metabolic_syndrome"             
+##  [9] "Use_of_stimulant_drugs"          "Family_history"                 
+## [11] "History_of_preeclampsia"         "CABG_history"                   
+## [13] "Respiratory_illness"             "UnderRisk"
+\end{verbatim}
+
+donde:
+
+\begin{itemize}
+    \item \texttt{Age}: edad
+    \item \texttt{Gender}: sexo del paciente. 1 para masculino, 2 para femenino.
+    \item \texttt{Chain\_smoker}: fumador. 0 no fumador, 1 fumador.
+    \item \texttt{Consumes\_other\_tobacco\_products}: consumidor de otros productos derivados del tabaco. 0 no consumidor, 1 consumidor.
+    \item \texttt{HighBP}: hipertensión. 0 no hipertenso, 1 hipertenso.
+    \item \texttt{Obese}: obesidad. 0 sin obesidad, 1 obeso.
+    \item \texttt{Diabetes}: diabetes, 0 sin diabetes, 1 con diabetes.
+    \item \texttt{Metabolic\_syndrome}: síndrome metabólico. 0 no tiene, 1 paciente con síndrome.
+    \item \texttt{Use\_of\_stimulant\_drugs}: uso de drogas estimulantes. 0 no consumidor, 1 consumidor.
+    \item \texttt{Family\_history}: historial familiar de paro cardíaco. 0 no tiene historial, 1 tiene historial.
+    \item \texttt{History\_of\_preeclampsia}: historial de preeclampsia. 0 sin historial, 1 con historial.
+    \item \texttt{CABG\_history}: historial de cirugía de bypass de arteria coronaria. 0 sin historial, 1 con historial.
+    \item \texttt{Respiratory\_illness}: enfermedad respiratoria. 0 sin enferemedades respiratorias, 1 posee enfermedades respiratorias.
+    \item \texttt{UnderRisk}: paciente bajo riesgo. \texttt{yes}: sí, \texttt{no}: no.
+\end{itemize}
+
+\hypertarget{estructura-del-dataset}{%
+\subsection{Estructura del dataset}\label{estructura-del-dataset}}
+
+La estructura del conjunto corresponde a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    889 obs. of  14 variables:
+##  $ Age                            : int  48 69 53 52 48 58 42 43 41 54 ...
+##  $ Gender                         : int  1 1 1 1 1 2 1 2 1 1 ...
+##  $ Chain_smoker                   : int  1 0 3 0 0 0 0 0 0 0 ...
+##  $ Consumes_other_tobacco_products: int  1 1 1 1 0 1 1 1 1 1 ...
+##  $ HighBP                         : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Obese                          : int  1 1 1 1 0 1 0 1 1 0 ...
+##  $ Diabetes                       : int  0 0 3 0 0 0 0 0 0 0 ...
+##  $ Metabolic_syndrome             : int  0 0 3 0 1 0 0 0 0 0 ...
+##  $ Use_of_stimulant_drugs         : int  0 0 0 0 1 0 1 0 0 1 ...
+##  $ Family_history                 : int  1 1 1 1 0 1 1 1 1 1 ...
+##  $ History_of_preeclampsia        : int  0 0 0 0 0 0 0 3 0 0 ...
+##  $ CABG_history                   : int  0 0 0 0 0 0 3 0 0 0 ...
+##  $ Respiratory_illness            : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ UnderRisk                      : chr  "no" "no" "no" "no" ...
+\end{verbatim}
+
+de donde se puede observar que son 14 parámetros y 889 observaciones.
+
+\newpage
+
+\hypertarget{tipo-de-datos}{%
+\subsection{Tipo de datos}\label{tipo-de-datos}}
+
+De acuerdo a lo observado en el conjunto de datos y lo descrito a partir
+de sus columnas, la totalidad de las variables serán consideradas como
+cualitativas. Del mismo modo, se procede a filtrar los datos para saltar
+las incoherencias:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OperatorTok{$}\NormalTok{Gender[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Gender }\OperatorTok{==}\StringTok{ }\DecValTok{1} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Gender }\OperatorTok{==}\StringTok{ }\DecValTok{2}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Chain\_smoker[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Chain\_smoker }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Chain\_smoker }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products }\OperatorTok{==}\StringTok{ }\DecValTok{0}
+    \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{HighBP[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{HighBP }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{HighBP }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Obese[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Obese }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Obese }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Diabetes[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Diabetes }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Diabetes }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome }\OperatorTok{==}\StringTok{ }\DecValTok{0}
+    \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs }\OperatorTok{==}\StringTok{ }\DecValTok{0}
+    \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Family\_history[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Family\_history }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Family\_history }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia }\OperatorTok{==}\StringTok{ }\DecValTok{0}
+    \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{CABG\_history[}\OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{CABG\_history }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{CABG\_history }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Respiratory\_illness[}
+    \OperatorTok{!}\NormalTok{(data}\OperatorTok{$}\NormalTok{Respiratory\_illness }\OperatorTok{==}\StringTok{ }\DecValTok{0} \OperatorTok{|}\StringTok{ }\NormalTok{data}\OperatorTok{$}\NormalTok{Respiratory\_illness }\OperatorTok{==}\StringTok{ }\DecValTok{1}\NormalTok{)] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+Para facilitar la legibilidad de los datos, se cambia el tipo de los
+parámetros a booleano.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OperatorTok{$}\NormalTok{Gender \textless{}{-}}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(data}\OperatorTok{$}\NormalTok{Gender)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Chain\_smoker \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Chain\_smoker)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{HighBP \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{HighBP)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Obese \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Obese)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Diabetes \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Diabetes)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Family\_history \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Family\_history)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{CABG\_history \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{CABG\_history)}
+\NormalTok{data}\OperatorTok{$}\NormalTok{Respiratory\_illness \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{Respiratory\_illness)}
+\end{Highlighting}
+\end{Shaded}
+
+Para el caso particular de los valores de la columna
+\(\verb|UnderRisk|\), se hará uso del paquete \texttt{batman}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\OperatorTok{!}\NormalTok{(}\StringTok{"batman"} \OperatorTok{\%in\%}\StringTok{ }\KeywordTok{rownames}\NormalTok{(}\KeywordTok{installed.packages}\NormalTok{())))\{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"batman"}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{library}\NormalTok{(}\StringTok{"batman"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Entonces, el filtrado de los datos de \(\verb|UnderRisk|\) se realiza
+mediante
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OperatorTok{$}\NormalTok{UnderRisk \textless{}{-}}\StringTok{ }\KeywordTok{to\_logical}\NormalTok{(data}\OperatorTok{$}\NormalTok{UnderRisk)}
+\end{Highlighting}
+\end{Shaded}
+
+\newpage
+
+\hypertarget{resumen-estaduxedstico}{%
+\subsection{Resumen estadístico}\label{resumen-estaduxedstico}}
+
+El resumen estadístico después del filtrado corresponde a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Age               Gender    Chain_smoker   
+##  Min.   : 40.0000000   1   :607   Mode :logical  
+##  1st Qu.: 47.0000000   2   :256   FALSE:779      
+##  Median : 54.0000000   NA's: 26   TRUE :107      
+##  Mean   : 62.2452193              NA's :3        
+##  3rd Qu.: 63.0000000                             
+##  Max.   :999.0000000                             
+##  Consumes_other_tobacco_products   HighBP          Obese        
+##  Mode :logical                   Mode :logical   Mode :logical  
+##  FALSE:144                       FALSE:812       FALSE:72       
+##  TRUE :740                       TRUE :77        TRUE :812      
+##  NA's :5                                         NA's :5        
+##                                                                 
+##                                                                 
+##   Diabetes       Metabolic_syndrome Use_of_stimulant_drugs Family_history 
+##  Mode :logical   Mode :logical      Mode :logical          Mode :logical  
+##  FALSE:839       FALSE:850          FALSE:812              FALSE:66       
+##  TRUE :49        TRUE :38           TRUE :73               TRUE :823      
+##  NA's :1         NA's :1            NA's :4                               
+##                                                                           
+##                                                                           
+##  History_of_preeclampsia CABG_history    Respiratory_illness UnderRisk      
+##  Mode :logical           Mode :logical   Mode :logical       Mode :logical  
+##  FALSE:871               FALSE:868       FALSE:860           FALSE:698      
+##  TRUE :16                TRUE :19        TRUE :29            TRUE :190      
+##  NA's :2                 NA's :2                             NA's :1        
+##                                                                             
+## 
+\end{verbatim}
+
+\hypertarget{edades}{%
+\subsubsection{Edades}\label{edades}}
+
+A continuación se presenta un diagrama de caja para los datos de la
+columna edad:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{    data}\OperatorTok{$}\NormalTok{Age,}
+    \DataTypeTok{main =} \StringTok{"Edades"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Age"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-9-1.pdf}
+Si se presentan los datos de manera ordenada
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(data}\OperatorTok{$}\NormalTok{Age, }\DataTypeTok{decreasing =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40  40
+##  [19]  40  40  40  40  40  40  40  40  41  41  41  41  41  41  41  41  41  41
+##  [37]  41  41  41  41  41  41  41  41  41  41  41  41  41  41  41  41  41  41
+##  [55]  41  41  41  41  41  41  41  42  42  42  42  42  42  42  42  42  42  42
+##  [73]  42  42  42  42  42  42  42  42  42  42  42  42  42  43  43  43  43  43
+##  [91]  43  43  43  43  43  43  43  43  43  43  43  43  43  43  43  43  43  43
+## [109]  43  43  43  43  43  44  44  44  44  44  44  44  44  44  44  44  44  44
+## [127]  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  45
+## [145]  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45
+## [163]  45  45  45  45  46  46  46  46  46  46  46  46  46  46  46  46  46  46
+## [181]  46  46  46  46  46  46  46  46  46  46  46  46  46  46  46  46  46  46
+## [199]  46  46  46  46  47  47  47  47  47  47  47  47  47  47  47  47  47  47
+## [217]  47  47  47  47  47  47  47  47  47  47  47  47  47  47  48  48  48  48
+## [235]  48  48  48  48  48  48  48  48  48  48  48  48  48  48  48  48  48  49
+## [253]  49  49  49  49  49  49  49  49  49  49  49  49  49  49  49  49  49  49
+## [271]  49  49  49  49  49  50  50  50  50  50  50  50  50  50  50  50  50  50
+## [289]  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50
+## [307]  50  50  50  50  50  50  50  50  50  51  51  51  51  51  51  51  51  51
+## [325]  51  51  51  51  51  51  51  51  51  51  51  51  51  51  51  51  51  51
+## [343]  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52
+## [361]  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  53
+## [379]  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53
+## [397]  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53
+## [415]  53  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54
+## [433]  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54
+## [451]  54  54  54  54  54  55  55  55  55  55  55  55  55  55  55  55  55  55
+## [469]  55  55  55  55  55  55  55  55  55  55  55  55  56  56  56  56  56  56
+## [487]  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56  56
+## [505]  56  56  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57
+## [523]  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57
+## [541]  57  57  58  58  58  58  58  58  58  58  58  58  58  58  58  58  58  58
+## [559]  58  58  58  58  58  58  58  58  58  59  59  59  59  59  59  59  59  59
+## [577]  59  59  59  59  59  59  59  59  59  59  60  60  60  60  60  60  60  60
+## [595]  60  60  60  60  60  60  60  60  60  60  60  60  60  60  61  61  61  61
+## [613]  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61
+## [631]  61  61  61  61  61  61  61  61  62  62  62  62  62  62  62  62  62  62
+## [649]  62  62  62  62  62  62  62  62  62  62  62  62  62  62  62  63  63  63
+## [667]  63  63  63  63  63  63  63  63  63  63  63  63  63  63  63  63  63  63
+## [685]  63  64  64  64  64  64  64  64  64  64  64  64  64  64  64  64  64  64
+## [703]  64  64  64  64  64  64  65  65  65  65  65  65  65  65  65  65  65  65
+## [721]  65  65  65  65  65  65  65  65  65  65  65  65  65  65  65  66  66  66
+## [739]  66  66  66  66  66  66  66  66  66  66  66  66  66  66  66  66  66  66
+## [757]  66  66  66  66  66  66  66  67  67  67  67  67  67  67  67  67  67  67
+## [775]  67  67  67  67  67  67  67  67  67  67  67  67  67  67  67  67  67  67
+## [793]  67  68  68  68  68  68  68  68  68  68  68  68  68  68  68  68  68  68
+## [811]  68  68  68  68  68  68  68  69  69  69  69  69  69  69  69  69  69  69
+## [829]  69  69  69  69  69  69  69  69  69  69  69  69  69  69  69  69  69  69
+## [847]  69  69  69  69  70  70  70  70  70  70  70  70  70  70  70  70  70  70
+## [865]  70  70  70  70  70  70  70  70  70  70  70  70  70  70  70  70  70  70
+## [883] 999 999 999 999 999 999 999
+\end{verbatim}
+
+Se puede ver que el único valor que carece de sentido es \texttt{999},
+por lo que se procederá a transformar ese valor a \texttt{NA}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OperatorTok{$}\NormalTok{Age[data}\OperatorTok{$}\NormalTok{Age }\OperatorTok{==}\StringTok{ }\DecValTok{999}\NormalTok{] \textless{}{-}}\StringTok{ }\OtherTok{NA}
+\end{Highlighting}
+\end{Shaded}
+
+Se vuelve a presentar el boxplot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(}
+\NormalTok{    data}\OperatorTok{$}\NormalTok{Age,}
+    \DataTypeTok{main =} \StringTok{"Edades"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Age"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+Junto con los datos ordenados
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(data}\OperatorTok{$}\NormalTok{Age, }\DataTypeTok{decreasing =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40 40
+##  [26] 40 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41 41
+##  [51] 41 41 41 41 41 41 41 41 41 41 41 42 42 42 42 42 42 42 42 42 42 42 42 42 42
+##  [76] 42 42 42 42 42 42 42 42 42 42 43 43 43 43 43 43 43 43 43 43 43 43 43 43 43
+## [101] 43 43 43 43 43 43 43 43 43 43 43 43 43 44 44 44 44 44 44 44 44 44 44 44 44
+## [126] 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 44 45 45 45 45 45 45 45
+## [151] 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 45 46 46 46 46 46 46 46 46 46
+## [176] 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46 46
+## [201] 46 46 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47 47
+## [226] 47 47 47 47 47 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48 48
+## [251] 48 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49 49
+## [276] 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50
+## [301] 50 50 50 50 50 50 50 50 50 50 50 50 50 50 50 51 51 51 51 51 51 51 51 51 51
+## [326] 51 51 51 51 51 51 51 51 51 51 51 51 51 51 51 51 51 52 52 52 52 52 52 52 52
+## [351] 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52 52
+## [376] 52 52 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53
+## [401] 53 53 53 53 53 53 53 53 53 53 53 53 53 53 53 54 54 54 54 54 54 54 54 54 54
+## [426] 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54 54
+## [451] 54 54 54 54 54 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55
+## [476] 55 55 55 55 55 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56 56
+## [501] 56 56 56 56 56 56 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57
+## [526] 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 57 58 58 58 58 58 58 58 58
+## [551] 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 58 59 59 59 59 59 59 59 59
+## [576] 59 59 59 59 59 59 59 59 59 59 59 60 60 60 60 60 60 60 60 60 60 60 60 60 60
+## [601] 60 60 60 60 60 60 60 60 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61 61
+## [626] 61 61 61 61 61 61 61 61 61 61 61 61 61 62 62 62 62 62 62 62 62 62 62 62 62
+## [651] 62 62 62 62 62 62 62 62 62 62 62 62 62 63 63 63 63 63 63 63 63 63 63 63 63
+## [676] 63 63 63 63 63 63 63 63 63 63 64 64 64 64 64 64 64 64 64 64 64 64 64 64 64
+## [701] 64 64 64 64 64 64 64 64 65 65 65 65 65 65 65 65 65 65 65 65 65 65 65 65 65
+## [726] 65 65 65 65 65 65 65 65 65 65 66 66 66 66 66 66 66 66 66 66 66 66 66 66 66
+## [751] 66 66 66 66 66 66 66 66 66 66 66 66 66 67 67 67 67 67 67 67 67 67 67 67 67
+## [776] 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 67 68 68 68 68 68 68 68
+## [801] 68 68 68 68 68 68 68 68 68 68 68 68 68 68 68 68 68 69 69 69 69 69 69 69 69
+## [826] 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69 69
+## [851] 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70 70
+## [876] 70 70 70 70 70 70 70
+\end{verbatim}
+
+de donde se puede observar que ya no existen valores incoherentes.
+
+Nuevamente se presenta un resumen de los datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Age              Gender    Chain_smoker   
+##  Min.   :40.0000000   1   :607   Mode :logical  
+##  1st Qu.:47.0000000   2   :256   FALSE:779      
+##  Median :54.0000000   NA's: 26   TRUE :107      
+##  Mean   :54.8106576              NA's :3        
+##  3rd Qu.:62.0000000                             
+##  Max.   :70.0000000                             
+##  NA's   :7                                      
+##  Consumes_other_tobacco_products   HighBP          Obese        
+##  Mode :logical                   Mode :logical   Mode :logical  
+##  FALSE:144                       FALSE:812       FALSE:72       
+##  TRUE :740                       TRUE :77        TRUE :812      
+##  NA's :5                                         NA's :5        
+##                                                                 
+##                                                                 
+##                                                                 
+##   Diabetes       Metabolic_syndrome Use_of_stimulant_drugs Family_history 
+##  Mode :logical   Mode :logical      Mode :logical          Mode :logical  
+##  FALSE:839       FALSE:850          FALSE:812              FALSE:66       
+##  TRUE :49        TRUE :38           TRUE :73               TRUE :823      
+##  NA's :1         NA's :1            NA's :4                               
+##                                                                           
+##                                                                           
+##                                                                           
+##  History_of_preeclampsia CABG_history    Respiratory_illness UnderRisk      
+##  Mode :logical           Mode :logical   Mode :logical       Mode :logical  
+##  FALSE:871               FALSE:868       FALSE:860           FALSE:698      
+##  TRUE :16                TRUE :19        TRUE :29            TRUE :190      
+##  NA's :2                 NA's :2                             NA's :1        
+##                                                                             
+##                                                                             
+## 
+\end{verbatim}
+
+\hypertarget{visualizaciuxf3n}{%
+\subsection{Visualización}\label{visualizaciuxf3n}}
+
+A continuación se presentan los histogramas de las distintas variables:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{hist}\NormalTok{(}
+\NormalTok{    data}\OperatorTok{$}\NormalTok{Age,}
+    \DataTypeTok{main =} \StringTok{"Edad"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Edad"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+Para la variable \texttt{Age} se observa que la frecuencia es más o
+menos homogénea, observándose un peak cercano a 40 años.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reemplazo para etiquetas en barplot}
+\NormalTok{arg1 \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{)}
+\NormalTok{arg2 \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"No presenta"}\NormalTok{, }\StringTok{"Presenta"}\NormalTok{)}
+\NormalTok{arg3 \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"Masculino"}\NormalTok{, }\StringTok{"Femenino"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Lo anterior corresponde a vectores que serán pasados al momento de
+formatear los histogramas siguientes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Gender),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg3,}
+    \DataTypeTok{main =} \StringTok{"Género"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Género"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}\NormalTok{,}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-17-1.pdf}
+
+El histograma muestra el género de los pacientes, en donde se ve que en
+su mayoría los pacientes son hombres.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Chain\_smoker),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg1,}
+    \DataTypeTok{main =} \StringTok{"Consumo de tabaco"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Fumador/a"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-18-1.pdf}
+
+En cuanto a lo que respecta a que si son fumadores, la gran mayoría de
+los pacientes no son fumadores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Consumes\_other\_tobacco\_products),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg1,}
+    \DataTypeTok{main =} \StringTok{"Consumo de otros productos derivados del tabaco"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Consumidor"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-19-1.pdf}
+
+En cuanto al consumo de otros productos derivados del tabaco, la
+situación cambia a que la mayoría de los pacientes consumen dichos
+productos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{HighBP),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Presión sanguínea"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Presión alta"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+Los pacientes observados en su mayorían presentan niveles de presión
+sanguínea normales.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Obese),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Obesidad"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Obeso/a"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-21-1.pdf}
+
+Respecto a los niveles de obesidad, el grueso de los pacientes posee
+esta condición.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Diabetes),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg1,}
+    \DataTypeTok{main =} \StringTok{"Diabetes"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Diabético/a"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+Respecto a la presencia de diabetes, un minoría presenta esta condición.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Metabolic\_syndrome),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Síndrome Metabólico"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Historial"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+Nuevamente, sólo una minoría de los pacientes presenta síndrome
+metabólico.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Consumo de drogas estimulantes"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Consumidor/a"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+Respecto al consumo de drogas estimulantes, sólo un pequeño número de
+éstos presentan consumo de dichas sustancias.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Family\_history),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Historial Familiar de ataque cardíaco"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Historial"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-25-1.pdf}
+
+Dentro de las observaciones, la mayoría presenta historial de ataque
+cardíaco entre su ascendencia.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{History\_of\_preeclampsia),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Historial de Preeclampsia"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Historial"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-26-1.pdf}
+
+En lo que respecta al historial de preeclampsia, la mayoría no presenta
+esta condición.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{CABG\_history),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Historial de cirugía de bypass de la arteria coronaria"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Historial"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-27-1.pdf}
+
+De igual manera, los pacientes observados no presentan cirugías de
+bypass de la arteria coronaria anteriores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{Respiratory\_illness),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg2,}
+    \DataTypeTok{main =} \StringTok{"Enefermedades Respiratorias"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Presenta"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-28-1.pdf}
+
+Así mismo, el número de pacientes con enfermedades respiratorias es
+mínimo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(data}\OperatorTok{$}\NormalTok{UnderRisk),}
+    \DataTypeTok{names.arg =}\NormalTok{ arg1,}
+    \DataTypeTok{main =} \StringTok{"Presencia de Riesgo"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Riesgoso/a"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Frecuencia"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{recuperativa_files/figure-latex/unnamed-chunk-29-1.pdf}
+
+De lo anterior, se observa que el número de pacientes bajo riesgo de
+ataque cardíaco es bajo.
+
+\end{document}
