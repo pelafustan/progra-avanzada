@@ -3,7 +3,8 @@ from Resource import Resource
 
 class Book(Resource):
     def __init__(
-        self, title,
+        self,
+        title,
         author,
         code,
         year,
