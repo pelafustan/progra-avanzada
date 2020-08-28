@@ -1,0 +1,480 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  10pt,
+  spanish,
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Examen},
+  pdfauthor={J. Patricio Parada G.},
+  pdflang={es},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=0.75in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifxetex
+  % Load polyglossia as late as possible: uses bidi with RTL langages (e.g. Hebrew, Arabic)
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\else
+  \usepackage[shorthands=off,main=spanish]{babel}
+\fi
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{Examen}
+\author{J. Patricio Parada G.}
+\date{28/08/2020}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{el-paro-carduxedaco}{%
+\section{El Paro cardíaco}\label{el-paro-carduxedaco}}
+
+Comúnmente llamado ataque cardíaco, el paro cardíaco es una condición
+riegosa y virtualmente mortífera que pone fin a millones de vidas al
+año. Es una de las causas de muerte más frecuentes en humanos y se debe
+a variados factores; puede ser a consecuencia del estilo de vida llevado
+o debido a otras afecciones o enfermedades.
+
+El conjunto de datos anexo presenta 12 factores que eventualmente
+proporcionan información respecto a si un paciente es candidato a sufrir
+un ataque cardíaco.
+
+\hypertarget{el-dataset}{%
+\section{El Dataset}\label{el-dataset}}
+
+El conjunto de datos adjunto correponde a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df \textless{}{-}}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"CRP\_dataset\_clean.csv"}\NormalTok{, }\DataTypeTok{stringsAsFactors =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{columnas}{%
+\subsection{Columnas}\label{columnas}}
+
+Las variables incluídas en el conjunto de datos corresponden a
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{colnames}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Age"                             "Gender"                         
+##  [3] "Chain_smoker"                    "Consumes_other_tobacco_products"
+##  [5] "HighBP"                          "Obese"                          
+##  [7] "Diabetes"                        "Metabolic_syndrome"             
+##  [9] "Use_of_stimulant_drugs"          "Family_history"                 
+## [11] "History_of_preeclampsia"         "CABG_history"                   
+## [13] "Respiratory_illness"             "UnderRisk"
+\end{verbatim}
+
+en donde:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{Age}: Edad.
+\item
+  \texttt{Gender}: género, 1 para masculino y 2 femenino.
+\item
+  \texttt{Chain\_smoker}: fumador, 0 para no fumador y 1 en caso
+  contrario.
+\item
+  \texttt{Consumes\_other\_tobacco\_products}: consumo de otros
+  productos derivados del tabaco. 1 para consumidor, 0 para no
+  consumidor.
+\item
+  \texttt{HighBP}: hipertensión. 0 persona sin hipertensión, 0 indica
+  afección.
+\item
+  \texttt{Obese}: obesidad. 0 para rangos de peso normales, 1 para
+  obesidad.
+\item
+  \texttt{Diabetes}: diabetes. 1 para diabético, 0 para no diabético.
+\item
+  \texttt{Metabolic\_syndrome}: híndrome metabólico. 0 para ausencia, 1
+  indica presencia.
+\item
+  \texttt{Use\_of\_stimulant\_drugs}: hso de drogas estimulantes. 0 para
+  no consumidor, 1 para consumidor.
+\item
+  \texttt{Family\_history}: historial familiar de ataques cardíácos. 1
+  para antecedentes, 0 en caso contrario.
+\item
+  \texttt{History\_of\_preeclampsia}: historial de preeclampsia. 1 casi
+  afirmativo, 0 negativo.
+\item
+  \texttt{CABG\_history}: historial de cirugía de bypass de la arteria
+  coronaria. 1 para operado, 0 en caso adverso.
+\item
+  \texttt{Respiratory\_illness}: enfermedades respiratorias. 0 no
+  presenta, 1 presenta.
+\item
+  \texttt{UnderRisk}: riesgoso. \texttt{yes} para sí, \texttt{no} para
+  no.
+\end{itemize}
+
+\hypertarget{estructura-de-los-datos}{%
+\subsection{Estructura de los datos}\label{estructura-de-los-datos}}
+
+Las observaciones se encuentras estructuradas como
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    889 obs. of  14 variables:
+##  $ Age                            : int  84 55 80 40 45 78 77 56 999 75 ...
+##  $ Gender                         : int  1 1 1 1 1 2 1 2 1 1 ...
+##  $ Chain_smoker                   : int  1 0 0 0 0 0 0 0 0 0 ...
+##  $ Consumes_other_tobacco_products: int  1 1 1 1 0 1 1 1 1 1 ...
+##  $ HighBP                         : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Obese                          : int  1 1 1 1 0 1 0 1 1 0 ...
+##  $ Diabetes                       : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Metabolic_syndrome             : int  0 0 0 0 1 0 0 0 0 0 ...
+##  $ Use_of_stimulant_drugs         : int  0 0 0 0 1 0 1 0 0 1 ...
+##  $ Family_history                 : int  1 1 1 1 0 1 1 1 1 1 ...
+##  $ History_of_preeclampsia        : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ CABG_history                   : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Respiratory_illness            : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ UnderRisk                      : chr  "no" "no" "no" "no" ...
+\end{verbatim}
+
+Se puede observar el tipo de dato de cada parámetro observado, en donde
+es posible ver que casi todos son de tipo \texttt{int}, a excepción del
+parámetro \texttt{UnderRisk}, el cual es de tipo \texttt{char}, lo cual
+es esperable a partir de la descripción de las variables dada
+anteriormente.
+
+También se indica el número de observaciones, que corresponden a 889.
+
+\hypertarget{tipo-de-variables}{%
+\subsection{Tipo de variables}\label{tipo-de-variables}}
+
+Para efectos prácticos, serán consideradas todas las variables como
+variables cualitativas, a excepción de la variable \texttt{Age}. Durante
+el desarrollo del presente texto, el tipo de dato presente en el
+dataframe será ajustado para facilitar operaciones.
+
+\hypertarget{resumen-de-datos}{%
+\subsection{Resumen de datos}\label{resumen-de-datos}}
+
+Antes de realizar cualquier tipo de limpieza de los datos, se procede a
+hacer un resumen estadístico de los datos en bruto:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Age                  Gender            Chain_smoker        
+##  Min.   :  0.0000000   Min.   :1.00000000   Min.   :0.000000000  
+##  1st Qu.: 51.0000000   1st Qu.:1.00000000   1st Qu.:0.000000000  
+##  Median : 62.0000000   Median :1.00000000   Median :0.000000000  
+##  Mean   : 67.1023622   Mean   :1.30033746   Mean   :0.120359955  
+##  3rd Qu.: 74.0000000   3rd Qu.:2.00000000   3rd Qu.:0.000000000  
+##  Max.   :999.0000000   Max.   :2.00000000   Max.   :1.000000000  
+##  Consumes_other_tobacco_products     HighBP                 Obese            
+##  Min.   :0.000000000             Min.   :0.0000000000   Min.   :0.000000000  
+##  1st Qu.:1.000000000             1st Qu.:0.0000000000   1st Qu.:1.000000000  
+##  Median :1.000000000             Median :0.0000000000   Median :1.000000000  
+##  Mean   :0.838020247             Mean   :0.0866141732   Mean   :0.919010124  
+##  3rd Qu.:1.000000000             3rd Qu.:0.0000000000   3rd Qu.:1.000000000  
+##  Max.   :1.000000000             Max.   :1.0000000000   Max.   :1.000000000  
+##     Diabetes            Metabolic_syndrome     Use_of_stimulant_drugs
+##  Min.   :0.0000000000   Min.   :0.0000000000   Min.   :0.0000000000  
+##  1st Qu.:0.0000000000   1st Qu.:0.0000000000   1st Qu.:0.0000000000  
+##  Median :0.0000000000   Median :0.0000000000   Median :0.0000000000  
+##  Mean   :0.0551181102   Mean   :0.0427446569   Mean   :0.0821147357  
+##  3rd Qu.:0.0000000000   3rd Qu.:0.0000000000   3rd Qu.:0.0000000000  
+##  Max.   :1.0000000000   Max.   :1.0000000000   Max.   :1.0000000000  
+##  Family_history       History_of_preeclampsia  CABG_history         
+##  Min.   :0.00000000   Min.   :0.0000000000    Min.   :0.0000000000  
+##  1st Qu.:1.00000000   1st Qu.:0.0000000000    1st Qu.:0.0000000000  
+##  Median :1.00000000   Median :0.0000000000    Median :0.0000000000  
+##  Mean   :0.92575928   Mean   :0.0179977503    Mean   :0.0213723285  
+##  3rd Qu.:1.00000000   3rd Qu.:0.0000000000    3rd Qu.:0.0000000000  
+##  Max.   :1.00000000   Max.   :1.0000000000    Max.   :1.0000000000  
+##  Respiratory_illness     UnderRisk        
+##  Min.   :0.0000000000   Length:889        
+##  1st Qu.:0.0000000000   Class :character  
+##  Median :0.0000000000   Mode  :character  
+##  Mean   :0.0326209224                     
+##  3rd Qu.:0.0000000000                     
+##  Max.   :1.0000000000
+\end{verbatim}
+
+en donde se puede apreciar que las variable están dentro de los valores
+esperados. La única variable que presenta un valores atípicos sería
+\texttt{Age}.
+
+Realizando un \texttt{boxplot} a la variable
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age, }\DataTypeTok{main =} \StringTok{"Edad"}\NormalTok{, }\StringTok{"ylab"}\NormalTok{ =}\StringTok{ "Age"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+en donde se observan valores extremos demasiado lejanos. Ordenando los
+datos de dicha columna de manera ordenada
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sort}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]   0   0   0   0   0   0  40  40  40  40  40  40  40  40  40  40  40  40
+##  [19]  40  40  40  40  40  40  40  41  41  41  41  41  41  41  41  41  41  41
+##  [37]  41  41  41  41  41  41  41  41  41  41  41  41  41  41  42  42  42  42
+##  [55]  42  42  42  42  42  42  42  42  42  42  43  43  43  43  43  43  43  43
+##  [73]  43  43  43  43  43  43  43  43  43  43  43  44  44  44  44  44  44  44
+##  [91]  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44  44
+## [109]  44  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45  45
+## [127]  45  45  45  45  45  45  46  46  46  46  46  46  46  46  46  46  46  46
+## [145]  46  46  46  46  46  46  47  47  47  47  47  47  47  47  47  47  47  47
+## [163]  47  47  47  47  47  48  48  48  48  48  48  48  48  48  48  48  48  48
+## [181]  48  48  48  49  49  49  49  49  49  49  49  49  49  49  49  49  49  49
+## [199]  49  49  49  50  50  50  50  50  50  50  50  50  50  50  50  50  50  50
+## [217]  50  50  50  51  51  51  51  51  51  51  51  51  51  51  51  51  51  52
+## [235]  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52  52
+## [253]  52  52  52  52  52  52  52  52  52  52  53  53  53  53  53  53  53  53
+## [271]  53  53  53  53  53  53  53  53  53  53  53  53  53  53  53  54  54  54
+## [289]  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54  54
+## [307]  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55  55
+## [325]  55  55  56  56  56  56  56  56  56  56  56  56  56  56  56  56  57  57
+## [343]  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57  57
+## [361]  57  57  57  57  57  58  58  58  58  58  58  58  58  58  58  59  59  59
+## [379]  59  59  59  59  59  59  59  59  59  59  59  59  59  59  59  59  60  60
+## [397]  60  60  60  60  60  60  60  60  60  60  60  60  60  60  60  60  60  61
+## [415]  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61  61
+## [433]  61  61  62  62  62  62  62  62  62  62  62  62  62  62  62  62  62  62
+## [451]  62  62  62  62  63  63  63  63  63  63  63  63  63  63  63  63  63  63
+## [469]  63  63  63  63  63  63  64  64  64  64  64  64  64  64  64  64  64  64
+## [487]  64  64  64  64  64  64  64  64  64  64  64  64  64  65  65  65  65  65
+## [505]  65  65  65  65  65  65  65  65  65  65  65  65  65  66  66  66  66  66
+## [523]  66  66  66  66  66  66  66  66  66  66  66  66  66  67  67  67  67  67
+## [541]  67  67  67  67  67  67  67  67  67  68  68  68  68  68  68  68  68  68
+## [559]  68  68  68  68  68  69  69  69  69  69  69  69  69  69  69  69  69  69
+## [577]  69  69  69  70  70  70  70  70  70  70  70  70  70  70  70  70  70  70
+## [595]  70  70  70  70  70  70  70  71  71  71  71  71  71  71  71  71  71  71
+## [613]  71  71  71  71  71  71  71  71  71  72  72  72  72  72  72  72  72  72
+## [631]  72  72  72  72  72  72  72  72  72  72  73  73  73  73  73  73  73  73
+## [649]  73  73  73  73  73  73  73  73  73  74  74  74  74  74  74  74  74  74
+## [667]  74  74  74  74  74  74  74  74  74  74  75  75  75  75  75  75  75  75
+## [685]  75  75  75  75  75  75  75  75  75  75  75  75  75  75  75  75  76  76
+## [703]  76  76  76  76  76  76  76  76  76  76  76  76  76  76  77  77  77  77
+## [721]  77  77  77  77  77  77  77  77  77  77  78  78  78  78  78  78  78  78
+## [739]  78  79  79  79  79  79  79  79  79  79  79  79  79  79  79  79  79  79
+## [757]  79  79  79  79  80  80  80  80  80  80  80  80  80  80  80  80  80  80
+## [775]  80  80  80  80  80  80  80  81  81  81  81  81  81  81  81  81  81  81
+## [793]  81  81  81  81  81  81  81  81  81  81  81  81  82  82  82  82  82  82
+## [811]  82  82  82  82  82  82  82  82  82  82  82  82  82  83  83  83  83  83
+## [829]  83  83  83  83  83  83  83  83  83  83  83  83  83  83  84  84  84  84
+## [847]  84  84  84  84  84  84  84  84  84  84  84  84  84  84  84  84  84  84
+## [865]  84  85  85  85  85  85  85  85  85  85  85  85  85  85  85  85  85  85
+## [883]  85  85 999 999 999 999 999
+\end{verbatim}
+
+se puede ver que el valor extremo 999 no tiene sentido, en consecuencia
+inválido, ya que es imposible que un humano viva dicha cantidad de años.
+El otro valor extremo, 0, es técnicamente válido, ya que podría
+representar la edad de neonatos menores a 1 año, no será considerado
+como tal por encontrarse demasiado alejado del grueso de los datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{outliers \textless{}{-}}\StringTok{ }\KeywordTok{boxplot.stats}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age)}\OperatorTok{$}\NormalTok{out}
+\NormalTok{df}\OperatorTok{$}\NormalTok{Age \textless{}{-}}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age }\OperatorTok{\%in\%}
+\StringTok{                    }\NormalTok{outliers,}
+                    \OtherTok{NA}\NormalTok{, df}\OperatorTok{$}\NormalTok{Age)}
+\end{Highlighting}
+\end{Shaded}
+
+Nuevamente se presenta un diagrama de caja para \texttt{Age}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age, }\DataTypeTok{main =} \StringTok{"Edad"}\NormalTok{, }\StringTok{"ylab"}\NormalTok{ =}\StringTok{ "Age"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+además del correspondiente resumen
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(df}\OperatorTok{$}\NormalTok{Age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max.       NA's 
+## 40.0000000 51.0000000 62.0000000 62.2539863 74.0000000 85.0000000         11
+\end{verbatim}
+
+En donde el rango de edades ahora va de 40 a 85 años.
+
+\hypertarget{filtrado}{%
+\subsection{Filtrado}\label{filtrado}}
+
+Para efectos prácticos, ahora se trabajará con un conjunto reducido en
+que se eliminarán los valores atípicos del parámetro \texttt{Age}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new\_df \textless{}{-}}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df)}
+\KeywordTok{summary}\NormalTok{(new\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Age                 Gender            Chain_smoker        
+##  Min.   :40.0000000   Min.   :1.00000000   Min.   :0.000000000  
+##  1st Qu.:51.0000000   1st Qu.:1.00000000   1st Qu.:0.000000000  
+##  Median :62.0000000   Median :1.00000000   Median :0.000000000  
+##  Mean   :62.2539863   Mean   :1.30182232   Mean   :0.120728929  
+##  3rd Qu.:74.0000000   3rd Qu.:2.00000000   3rd Qu.:0.000000000  
+##  Max.   :85.0000000   Max.   :2.00000000   Max.   :1.000000000  
+##  Consumes_other_tobacco_products     HighBP                 Obese            
+##  Min.   :0.000000000             Min.   :0.0000000000   Min.   :0.000000000  
+##  1st Qu.:1.000000000             1st Qu.:0.0000000000   1st Qu.:1.000000000  
+##  Median :1.000000000             Median :0.0000000000   Median :1.000000000  
+##  Mean   :0.837129841             Mean   :0.0854214123   Mean   :0.920273349  
+##  3rd Qu.:1.000000000             3rd Qu.:0.0000000000   3rd Qu.:1.000000000  
+##  Max.   :1.000000000             Max.   :1.0000000000   Max.   :1.000000000  
+##     Diabetes            Metabolic_syndrome     Use_of_stimulant_drugs
+##  Min.   :0.0000000000   Min.   :0.0000000000   Min.   :0.0000000000  
+##  1st Qu.:0.0000000000   1st Qu.:0.0000000000   1st Qu.:0.0000000000  
+##  Median :0.0000000000   Median :0.0000000000   Median :0.0000000000  
+##  Mean   :0.0546697039   Mean   :0.0421412301   Mean   :0.0808656036  
+##  3rd Qu.:0.0000000000   3rd Qu.:0.0000000000   3rd Qu.:0.0000000000  
+##  Max.   :1.0000000000   Max.   :1.0000000000   Max.   :1.0000000000  
+##  Family_history        History_of_preeclampsia  CABG_history         
+##  Min.   :0.000000000   Min.   :0.0000000000    Min.   :0.0000000000  
+##  1st Qu.:1.000000000   1st Qu.:0.0000000000    1st Qu.:0.0000000000  
+##  Median :1.000000000   Median :0.0000000000    Median :0.0000000000  
+##  Mean   :0.925968109   Mean   :0.0182232346    Mean   :0.0216400911  
+##  3rd Qu.:1.000000000   3rd Qu.:0.0000000000    3rd Qu.:0.0000000000  
+##  Max.   :1.000000000   Max.   :1.0000000000    Max.   :1.0000000000  
+##  Respiratory_illness     UnderRisk        
+##  Min.   :0.0000000000   Length:878        
+##  1st Qu.:0.0000000000   Class :character  
+##  Median :0.0000000000   Mode  :character  
+##  Mean   :0.0318906606                     
+##  3rd Qu.:0.0000000000                     
+##  Max.   :1.0000000000
+\end{verbatim}
+
+\end{document}

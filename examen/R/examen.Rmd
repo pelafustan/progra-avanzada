@@ -1,0 +1,127 @@
+---
+title: "Examen"
+author: "J. Patricio Parada G."
+date: "28/08/2020"
+lang: "es"
+geometry: margin=0.75in
+fontsize: 10pt
+output:
+    pdf_document:
+        toc: true
+        toc_depth: 2
+        number_sections: true
+        latex_engine: pdflatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# El Paro cardíaco
+
+Comúnmente llamado ataque cardíaco, el paro cardíaco es una condición riegosa y virtualmente mortífera que pone fin a millones de vidas al año. Es una de las causas de muerte más frecuentes en humanos y se debe a variados factores; puede ser a consecuencia del estilo de vida llevado o debido a otras afecciones o enfermedades.
+
+El conjunto de datos anexo presenta 12 factores que eventualmente proporcionan información respecto a si un paciente es candidato a sufrir un ataque cardíaco.
+
+# El Dataset
+
+El conjunto de datos adjunto correponde a
+
+```{r}
+df <- read.csv("CRP_dataset_clean.csv", stringsAsFactors = FALSE)
+```
+
+## Columnas
+
+Las variables incluídas en el conjunto de datos corresponden a
+
+```{r}
+colnames(df)
+```
+
+en donde:
+
+- `Age`: Edad.
+- `Gender`: género, 1 para masculino y 2 femenino.
+- `Chain_smoker`: fumador, 0 para no fumador y 1 en caso contrario.
+- `Consumes_other_tobacco_products`: consumo de otros productos derivados del tabaco. 1 para consumidor, 0 para no consumidor.
+- `HighBP`: hipertensión. 0 persona sin hipertensión, 0 indica afección.
+- `Obese`: obesidad. 0 para rangos de peso normales, 1 para obesidad.
+- `Diabetes`: diabetes. 1 para diabético, 0 para no diabético.
+- `Metabolic_syndrome`: híndrome metabólico. 0 para ausencia, 1 indica presencia.
+- `Use_of_stimulant_drugs`: hso de drogas estimulantes. 0 para no consumidor, 1 para consumidor.
+- `Family_history`: historial familiar de ataques cardíácos. 1 para antecedentes, 0 en caso contrario.
+- `History_of_preeclampsia`: historial de preeclampsia. 1 casi afirmativo, 0 negativo.
+- `CABG_history`: historial de cirugía de bypass de la arteria coronaria. 1 para operado, 0 en caso adverso.
+- `Respiratory_illness`: enfermedades respiratorias. 0 no presenta, 1 presenta.
+- `UnderRisk`: riesgoso. `yes` para sí, `no` para no.
+
+## Estructura de los datos
+
+Las observaciones se encuentras estructuradas como
+
+```{r}
+str(df)
+```
+
+Se puede observar el tipo de dato de cada parámetro observado, en donde es posible ver que casi todos son de tipo `int`, a excepción del parámetro `UnderRisk`, el cual es de tipo `char`, lo cual es esperable a partir de la descripción de las variables dada anteriormente.
+
+También se indica el número de observaciones, que corresponden a 889.
+
+## Tipo de variables
+
+Para efectos prácticos, serán consideradas todas las variables como variables cualitativas, a excepción de la variable `Age`. Durante el desarrollo del presente texto, el tipo de dato presente en el dataframe será ajustado para facilitar operaciones.
+
+## Resumen de datos
+
+Antes de realizar cualquier tipo de limpieza de los datos, se procede a hacer un resumen estadístico de los datos en bruto:
+
+```{r}
+summary(df)
+```
+
+en donde se puede apreciar que las variable están dentro de los valores esperados. La única variable que presenta un valores atípicos sería `Age`.
+
+Realizando un `boxplot` a la variable
+
+```{r}
+boxplot(df$Age, main = "Edad", "ylab" = "Age")
+```
+
+en donde se observan valores extremos demasiado lejanos. Ordenando los datos de dicha columna de manera ordenada
+
+```{r}
+sort(df$Age)
+```
+
+se puede ver que el valor extremo 999 no tiene sentido, en consecuencia inválido, ya que es imposible que un humano viva dicha cantidad de años. El otro valor extremo, 0, es técnicamente válido, ya que podría representar la edad de neonatos menores a 1 año, no será considerado como tal por encontrarse demasiado alejado del grueso de los datos.
+
+```{r}
+outliers <- boxplot.stats(df$Age)$out
+df$Age <- ifelse(df$Age %in%
+                    outliers,
+                    NA, df$Age)
+```
+
+Nuevamente se presenta un diagrama de caja para `Age`
+
+```{r}
+boxplot(df$Age, main = "Edad", "ylab" = "Age")
+```
+
+además del correspondiente resumen
+
+```{r}
+summary(df$Age)
+```
+
+En donde el rango de edades ahora va de 40 a 85 años.
+
+## Filtrado
+
+Para efectos prácticos, ahora se trabajará con un conjunto reducido en que se eliminarán los valores atípicos del parámetro `Age`
+
+```{r}
+new_df <- na.omit(df)
+summary(new_df)
+```
