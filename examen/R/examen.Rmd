@@ -231,7 +231,7 @@ filtered <- filter(new_df, UnderRisk == TRUE)
 
 bar_age <- ggplot(new_df, aes(x = Age, fill = UnderRisk)) +
     geom_bar(position = position_dodge()) +
-    theme(legend.position = "none")
+    theme(legend.position = "right")
 bar_gender <- ggplot(new_df, aes(x = Gender, fill = UnderRisk)) +
     geom_bar(position = position_dodge()) +
     theme(legend.position = "none")
@@ -251,6 +251,8 @@ bar_history <- ggplot(new_df, aes(x = Family_history, fill = UnderRisk)) +
     geom_bar(position = position_dodge()) +
     theme(legend.position = "none")
 
+bar_age
+
 grid.arrange(
     bar_gender,
     bar_smoker,
@@ -259,3 +261,10 @@ grid.arrange(
     bar_drugs,
     bar_history)
 ```
+
+De los gráficos se puede concluir, grosso modo, que dentro de las personas que presentan riesgos de sufrir paros cardíacos lso factores que más influyen son obesidad y la presencia de antecedentes familiares de ataques cardíacos.
+
+
+## Probabilidades
+
+Fallé :c

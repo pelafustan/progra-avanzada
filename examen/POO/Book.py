@@ -4,11 +4,11 @@ from Resource import Resource
 class Book(Resource):
     def __init__(
         self,
-        title,
-        author,
-        code,
-        year,
-        edition,
+        title=None,
+        author=None,
+        code=None,
+        year=None,
+        edition=None,
         total_copies=1,
         available_copies=1
     ):

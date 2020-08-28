@@ -642,7 +642,7 @@ riesgo de un infarto y se mostrarán distintos gráficos
 
 \NormalTok{bar\_age \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Age, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
-\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{)}
 \NormalTok{bar\_gender \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Gender, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
@@ -662,6 +662,14 @@ riesgo de un infarto y se mostrarán distintos gráficos
 \StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
 \StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
 
+\NormalTok{bar\_age}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-15-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{grid.arrange}\NormalTok{(}
 \NormalTok{    bar\_gender,}
 \NormalTok{    bar\_smoker,}
@@ -672,6 +680,16 @@ riesgo de un infarto y se mostrarán distintos gráficos
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{examen_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{examen_files/figure-latex/unnamed-chunk-15-2.pdf}
+
+De los gráficos se puede concluir, grosso modo, que dentro de las
+personas que presentan riesgos de sufrir paros cardíacos lso factores
+que más influyen son obesidad y la presencia de antecedentes familiares
+de ataques cardíacos.
+
+\hypertarget{probabilidades}{%
+\subsection{Probabilidades}\label{probabilidades}}
+
+Fallé :c
 
 \end{document}
