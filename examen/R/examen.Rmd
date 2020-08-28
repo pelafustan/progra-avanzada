@@ -119,9 +119,143 @@ En donde el rango de edades ahora va de 40 a 85 años.
 
 ## Filtrado
 
-Para efectos prácticos, ahora se trabajará con un conjunto reducido en que se eliminarán los valores atípicos del parámetro `Age`
+Para efectos prácticos, ahora se trabajará con un conjunto reducido en que se eliminarán los valores atípicos del parámetro `Age`, manteniendo sólo las columnas `Gender`, `Chain_smoker`, `Obese`, `Diabetes`, `Use_of_stimulant_drugs`, `Family_history` y `UnderRisk`.
 
 ```{r}
-new_df <- na.omit(df)
+cols <- c(
+    "Age", "Gender", "Chain_smoker", "Obese",
+    "Diabetes", "Use_of_stimulant_drugs",
+    "Family_history", "UnderRisk")
+new_df <- na.omit(df[, cols])
+```
+
+También se cambiará el tipo de dato de las variables cualitativas, las que serán transformadas a lógicas, con excepción de género, que está como factor.
+
+```{r}
+new_df$Gender <- as.factor(new_df$Gender)
+new_df$Chain_smoker <- as.logical(new_df$Chain_smoker)
+new_df$Obese <- as.logical(new_df$Obese)
+new_df$Diabetes <- as.logical(new_df$Diabetes)
+new_df$Use_of_stimulant_drugs <- as.logical(new_df$Use_of_stimulant_drugs)
+new_df$Family_history <- as.logical(new_df$Family_history)
+```
+
+Para el caso de `UnderRisk`, se hará uso del paquete `batman`.
+
+```{r}
+if (!("batman" %in% rownames(installed.packages()))) {
+    install.packages("batman")
+}
+library("batman")
+new_df$UnderRisk <- to_logical(new_df$UnderRisk)
+```
+
+Exponiendo nuevamente la estructura y su resumen estadístico
+
+```{r}
+str(new_df)
 summary(new_df)
+```
+
+## Visualización
+
+Ahora se verán algunas gráficas del nuevo subconjunto de datos
+
+```{r}
+barplot(
+    table(new_df$Age),
+    main = "Edad",
+    xlab = "Edad",
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Gender),
+    main = "Género",
+    names.arg = c("Masculino", "Femenino"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Chain_smoker),
+    main = "Fumador",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Obese),
+    main = "Obesidad",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Diabetes),
+    main = "Diabetes",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Use_of_stimulant_drugs),
+    main = "Consumo de drogas estimulantes",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$Family_history),
+    main = "Historial familiar de ataque cardíaco",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+
+barplot(
+    table(new_df$UnderRisk),
+    main = "Riesgo de ataque cardíaco",
+    names.arg = c("No", "Sí"),
+    ylab = "Número de pacientes"
+)
+```
+
+## Análisis
+
+Ahora se hará un filtrado para dejar sólo las personas que están bajo riesgo de un infarto y se mostrarán distintos gráficos
+
+```{r}
+library("tidyverse")
+library("gridExtra")
+filtered <- filter(new_df, UnderRisk == TRUE)
+
+
+bar_age <- ggplot(new_df, aes(x = Age, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_gender <- ggplot(new_df, aes(x = Gender, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_smoker <- ggplot(new_df, aes(x = Chain_smoker, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_obese <- ggplot(new_df, aes(x = Obese, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_diabetes <- ggplot(new_df, aes(x = Diabetes, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_drugs <- ggplot(new_df, aes(x = Use_of_stimulant_drugs, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+bar_history <- ggplot(new_df, aes(x = Family_history, fill = UnderRisk)) +
+    geom_bar(position = position_dodge()) +
+    theme(legend.position = "none")
+
+grid.arrange(
+    bar_gender,
+    bar_smoker,
+    bar_obese,
+    bar_diabetes,
+    bar_drugs,
+    bar_history)
 ```

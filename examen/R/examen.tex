@@ -430,51 +430,248 @@ En donde el rango de edades ahora va de 40 a 85 años.
 \subsection{Filtrado}\label{filtrado}}
 
 Para efectos prácticos, ahora se trabajará con un conjunto reducido en
-que se eliminarán los valores atípicos del parámetro \texttt{Age}
+que se eliminarán los valores atípicos del parámetro \texttt{Age},
+manteniendo sólo las columnas \texttt{Gender}, \texttt{Chain\_smoker},
+\texttt{Obese}, \texttt{Diabetes}, \texttt{Use\_of\_stimulant\_drugs},
+\texttt{Family\_history} y \texttt{UnderRisk}.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{new\_df \textless{}{-}}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df)}
+\NormalTok{cols \textless{}{-}}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+    \StringTok{"Age"}\NormalTok{, }\StringTok{"Gender"}\NormalTok{, }\StringTok{"Chain\_smoker"}\NormalTok{, }\StringTok{"Obese"}\NormalTok{,}
+    \StringTok{"Diabetes"}\NormalTok{, }\StringTok{"Use\_of\_stimulant\_drugs"}\NormalTok{,}
+    \StringTok{"Family\_history"}\NormalTok{, }\StringTok{"UnderRisk"}\NormalTok{)}
+\NormalTok{new\_df \textless{}{-}}\StringTok{ }\KeywordTok{na.omit}\NormalTok{(df[, cols])}
+\end{Highlighting}
+\end{Shaded}
+
+También se cambiará el tipo de dato de las variables cualitativas, las
+que serán transformadas a lógicas, con excepción de género, que está
+como factor.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Gender \textless{}{-}}\StringTok{ }\KeywordTok{as.factor}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Gender)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Chain\_smoker \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Chain\_smoker)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Obese \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Obese)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Diabetes \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Diabetes)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{Family\_history \textless{}{-}}\StringTok{ }\KeywordTok{as.logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Family\_history)}
+\end{Highlighting}
+\end{Shaded}
+
+Para el caso de \texttt{UnderRisk}, se hará uso del paquete
+\texttt{batman}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (}\OperatorTok{!}\NormalTok{(}\StringTok{"batman"} \OperatorTok{\%in\%}\StringTok{ }\KeywordTok{rownames}\NormalTok{(}\KeywordTok{installed.packages}\NormalTok{()))) \{}
+    \KeywordTok{install.packages}\NormalTok{(}\StringTok{"batman"}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{library}\NormalTok{(}\StringTok{"batman"}\NormalTok{)}
+\NormalTok{new\_df}\OperatorTok{$}\NormalTok{UnderRisk \textless{}{-}}\StringTok{ }\KeywordTok{to\_logical}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{UnderRisk)}
+\end{Highlighting}
+\end{Shaded}
+
+Exponiendo nuevamente la estructura y su resumen estadístico
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(new\_df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    878 obs. of  8 variables:
+##  $ Age                   : int  84 55 80 40 45 78 77 56 75 47 ...
+##  $ Gender                : Factor w/ 2 levels "1","2": 1 1 1 1 1 2 1 2 1 1 ...
+##  $ Chain_smoker          : logi  TRUE FALSE FALSE FALSE FALSE FALSE ...
+##  $ Obese                 : logi  TRUE TRUE TRUE TRUE FALSE TRUE ...
+##  $ Diabetes              : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ Use_of_stimulant_drugs: logi  FALSE FALSE FALSE FALSE TRUE FALSE ...
+##  $ Family_history        : logi  TRUE TRUE TRUE TRUE FALSE TRUE ...
+##  $ UnderRisk             : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  - attr(*, "na.action")= 'omit' Named int [1:11] 9 150 311 369 378 412 512 580 594 723 ...
+##   ..- attr(*, "names")= chr [1:11] "9" "150" "311" "369" ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{summary}\NormalTok{(new\_df)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
-##       Age                 Gender            Chain_smoker        
-##  Min.   :40.0000000   Min.   :1.00000000   Min.   :0.000000000  
-##  1st Qu.:51.0000000   1st Qu.:1.00000000   1st Qu.:0.000000000  
-##  Median :62.0000000   Median :1.00000000   Median :0.000000000  
-##  Mean   :62.2539863   Mean   :1.30182232   Mean   :0.120728929  
-##  3rd Qu.:74.0000000   3rd Qu.:2.00000000   3rd Qu.:0.000000000  
-##  Max.   :85.0000000   Max.   :2.00000000   Max.   :1.000000000  
-##  Consumes_other_tobacco_products     HighBP                 Obese            
-##  Min.   :0.000000000             Min.   :0.0000000000   Min.   :0.000000000  
-##  1st Qu.:1.000000000             1st Qu.:0.0000000000   1st Qu.:1.000000000  
-##  Median :1.000000000             Median :0.0000000000   Median :1.000000000  
-##  Mean   :0.837129841             Mean   :0.0854214123   Mean   :0.920273349  
-##  3rd Qu.:1.000000000             3rd Qu.:0.0000000000   3rd Qu.:1.000000000  
-##  Max.   :1.000000000             Max.   :1.0000000000   Max.   :1.000000000  
-##     Diabetes            Metabolic_syndrome     Use_of_stimulant_drugs
-##  Min.   :0.0000000000   Min.   :0.0000000000   Min.   :0.0000000000  
-##  1st Qu.:0.0000000000   1st Qu.:0.0000000000   1st Qu.:0.0000000000  
-##  Median :0.0000000000   Median :0.0000000000   Median :0.0000000000  
-##  Mean   :0.0546697039   Mean   :0.0421412301   Mean   :0.0808656036  
-##  3rd Qu.:0.0000000000   3rd Qu.:0.0000000000   3rd Qu.:0.0000000000  
-##  Max.   :1.0000000000   Max.   :1.0000000000   Max.   :1.0000000000  
-##  Family_history        History_of_preeclampsia  CABG_history         
-##  Min.   :0.000000000   Min.   :0.0000000000    Min.   :0.0000000000  
-##  1st Qu.:1.000000000   1st Qu.:0.0000000000    1st Qu.:0.0000000000  
-##  Median :1.000000000   Median :0.0000000000    Median :0.0000000000  
-##  Mean   :0.925968109   Mean   :0.0182232346    Mean   :0.0216400911  
-##  3rd Qu.:1.000000000   3rd Qu.:0.0000000000    3rd Qu.:0.0000000000  
-##  Max.   :1.000000000   Max.   :1.0000000000    Max.   :1.0000000000  
-##  Respiratory_illness     UnderRisk        
-##  Min.   :0.0000000000   Length:878        
-##  1st Qu.:0.0000000000   Class :character  
-##  Median :0.0000000000   Mode  :character  
-##  Mean   :0.0318906606                     
-##  3rd Qu.:0.0000000000                     
-##  Max.   :1.0000000000
+##       Age             Gender  Chain_smoker      Obese          Diabetes      
+##  Min.   :40.0000000   1:613   Mode :logical   Mode :logical   Mode :logical  
+##  1st Qu.:51.0000000   2:265   FALSE:772       FALSE:70        FALSE:830      
+##  Median :62.0000000           TRUE :106       TRUE :808       TRUE :48       
+##  Mean   :62.2539863                                                          
+##  3rd Qu.:74.0000000                                                          
+##  Max.   :85.0000000                                                          
+##  Use_of_stimulant_drugs Family_history  UnderRisk      
+##  Mode :logical          Mode :logical   Mode :logical  
+##  FALSE:807              FALSE:65        FALSE:690      
+##  TRUE :71               TRUE :813       TRUE :188      
+##                                                        
+##                                                        
+## 
 \end{verbatim}
+
+\hypertarget{visualizaciuxf3n}{%
+\subsection{Visualización}\label{visualizaciuxf3n}}
+
+Ahora se verán algunas gráficas del nuevo subconjunto de datos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Age),}
+    \DataTypeTok{main =} \StringTok{"Edad"}\NormalTok{,}
+    \DataTypeTok{xlab =} \StringTok{"Edad"}\NormalTok{,}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Gender),}
+    \DataTypeTok{main =} \StringTok{"Género"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"Masculino"}\NormalTok{, }\StringTok{"Femenino"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Chain\_smoker),}
+    \DataTypeTok{main =} \StringTok{"Fumador"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Obese),}
+    \DataTypeTok{main =} \StringTok{"Obesidad"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Diabetes),}
+    \DataTypeTok{main =} \StringTok{"Diabetes"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Use\_of\_stimulant\_drugs),}
+    \DataTypeTok{main =} \StringTok{"Consumo de drogas estimulantes"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{Family\_history),}
+    \DataTypeTok{main =} \StringTok{"Historial familiar de ataque cardíaco"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-7.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{barplot}\NormalTok{(}
+    \KeywordTok{table}\NormalTok{(new\_df}\OperatorTok{$}\NormalTok{UnderRisk),}
+    \DataTypeTok{main =} \StringTok{"Riesgo de ataque cardíaco"}\NormalTok{,}
+    \DataTypeTok{names.arg =} \KeywordTok{c}\NormalTok{(}\StringTok{"No"}\NormalTok{, }\StringTok{"Sí"}\NormalTok{),}
+    \DataTypeTok{ylab =} \StringTok{"Número de pacientes"}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-14-8.pdf}
+
+\hypertarget{anuxe1lisis}{%
+\subsection{Análisis}\label{anuxe1lisis}}
+
+Ahora se hará un filtrado para dejar sólo las personas que están bajo
+riesgo de un infarto y se mostrarán distintos gráficos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(}\StringTok{"gridExtra"}\NormalTok{)}
+\NormalTok{filtered \textless{}{-}}\StringTok{ }\KeywordTok{filter}\NormalTok{(new\_df, UnderRisk }\OperatorTok{==}\StringTok{ }\OtherTok{TRUE}\NormalTok{)}
+
+
+\NormalTok{bar\_age \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Age, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_gender \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Gender, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_smoker \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Chain\_smoker, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_obese \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Obese, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_diabetes \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Diabetes, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_drugs \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Use\_of\_stimulant\_drugs, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+\NormalTok{bar\_history \textless{}{-}}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new\_df, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Family\_history, }\DataTypeTok{fill =}\NormalTok{ UnderRisk)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{geom\_bar}\NormalTok{(}\DataTypeTok{position =} \KeywordTok{position\_dodge}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{)}
+
+\KeywordTok{grid.arrange}\NormalTok{(}
+\NormalTok{    bar\_gender,}
+\NormalTok{    bar\_smoker,}
+\NormalTok{    bar\_obese,}
+\NormalTok{    bar\_diabetes,}
+\NormalTok{    bar\_drugs,}
+\NormalTok{    bar\_history)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{examen_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 \end{document}
